@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+from email.generator import DecodedGenerator
 import sys
+
+from cv2 import DESCRIPTOR_MATCHER_BRUTEFORCE_HAMMING
 
 
 class Letter:
@@ -34,7 +37,15 @@ def parse_file(file_path: str) -> list[Letter]:
             chars[c] = chars[c] + 1 if c in chars else 1
     return sorted((Letter(c, f) for c, f in chars.items()), key=lambda x: x.freq)
 
+def decorateur01(func):
+    def wrapper(*args, **kwargs):
+        print(f"Exécution de {func.__name__} avec les arguments {args} et {kwargs}")
+        result = func(*args, **kwargs)
+        print(f"Résultat : {result}")
+        return result
+    return wrapper
 
+@decorateur01
 def build_tree(letters: list[Letter]) -> Letter | TreeNode:
     """
     Run through the list of Letters and build the min heap
