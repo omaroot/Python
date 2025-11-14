@@ -42,7 +42,7 @@ a = Utilisateur(2,5)
 
 b = Utilisateur(2,5)
 
-a.compare(a)
+a.compare(a,b)
 
 
 
